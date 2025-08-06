@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Paul's Cleaning Crews</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Paul's Cleaning Crews - Admin Dashboard</h1>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="/admin">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container admin-dashboard">
+        <aside class="admin-sidebar">
+            <button class="btn" id="addJobsBtn">Add Jobs</button>
+            <button class="btn" id="clientsBtn">Clients</button>
+            <button class="btn" id="addClientBtn">Add Client</button>
+            <button class="btn" id="jobSchedulesBtn">Job Schedules</button>
+            <button class="btn" id="jobRequestedBtn">Job Requested</button>
+            <button class="btn" id="settingsBtn">Settings</button>
+        </aside>
+
+        <section class="admin-content">
+            <h2 id="contentTitle">Welcome, Admin!</h2>
+            <div id="contentArea">
+                <p>Select an option from the sidebar to manage Paul's Cleaning Crews.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Paul's Cleaning Crews. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

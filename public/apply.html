@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job - Paul's Cleaning Crews</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Paul's Cleaning Crews</h1>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/apply">Apply for Job</a></li>
+                <li><a href="/login">Admin Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container content-section">
+        <h2 class="section-title">Job Application Form</h2>
+        <form id="jobApplicationForm" action="/apply-job" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="experience">Years of Cleaning Experience:</label>
+                <input type="text" id="experience" name="experience" placeholder="e.g., 3 years, Entry-level" required>
+            </div>
+            <div class="form-group">
+                <label for="jobDetails">Tell us about your relevant experience and why you'd be a great fit for Paul's Cleaning Crews (Job Details/Resume Summary):</label>
+                <textarea id="jobDetails" name="jobDetails" rows="8" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit Application</button>
+        </form>
+        <p id="formMessage" style="margin-top: 20px; text-align: center; font-weight: bold;"></p>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Paul's Cleaning Crews. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('jobApplicationForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const formMessage = document.getElementById('formMessage');
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new URLSearchParams(formData) // Use URLSearchParams for x-www-form-urlencoded
+                });
+
+                if (response.ok) {
+                    const message = await response.text();
+                    formMessage.textContent = message;
+                    formMessage.style.color = 'green';
+                    form.reset(); // Clear the form
+                } else {
+                    const errorText = await response.text();
+                    formMessage.textContent = `Error: ${errorText}`;
+                    formMessage.style.color = 'red';
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                formMessage.textContent = 'An error occurred. Please try again.';
+                formMessage.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
